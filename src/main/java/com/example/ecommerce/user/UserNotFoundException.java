@@ -1,4 +1,4 @@
-package com.example.user;
+package com.example.ecommerce.user;
 
 public class UserNotFoundException extends RuntimeException {
 	

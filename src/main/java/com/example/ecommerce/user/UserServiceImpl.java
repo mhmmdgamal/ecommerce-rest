@@ -1,12 +1,12 @@
-package com.example.user;
+package com.example.ecommerce.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service//dao
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Autowired//instanse of mysql data base helper
     private UserRepository userRepository;
 
 	@Override

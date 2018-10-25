@@ -1,4 +1,4 @@
-package com.example.user;
+package com.example.ecommerce.user;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
