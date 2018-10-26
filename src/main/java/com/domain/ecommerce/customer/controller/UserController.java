@@ -1,7 +1,10 @@
-package com.domain.ecommerce.customer.user;
+package com.domain.ecommerce.customer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.domain.ecommerce.customer.user.User;
+import com.domain.ecommerce.customer.user.UserService;
 
 @RestController
 @RequestMapping("/users")
@@ -13,11 +16,11 @@ public class UserController {
 	// get all users
 	@GetMapping("/list")
 	public Iterable<User> all() {
-		return userService.findAll();
+		return userService.getAll(true);
 	}
 
 	// add new user
-	@PostMapping("/add") 
+	@PostMapping("/add")
 	public void add(@RequestBody User user) {
 		userService.add(user);
 	}
@@ -25,7 +28,7 @@ public class UserController {
 	// get user by id
 	@GetMapping("/list/{id}")
 	public User one(@PathVariable int id) {
-		return userService.findOne(id);
+		return userService.getById(id);
 	}
 
 	// update user

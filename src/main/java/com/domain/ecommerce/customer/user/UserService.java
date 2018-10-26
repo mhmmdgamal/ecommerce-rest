@@ -1,14 +1,16 @@
 package com.domain.ecommerce.customer.user;
 
-public interface UserService {
+import com.domain.ecommerce.customer.comment.Comment;
+import com.domain.ecommerce.customer.item.Item;
+import com.domain.ecommerce.customer.service.Service;
+import com.domain.ecommerce.customer.user.User;
 
-	Iterable<User> findAll();
+public interface UserService extends Service<User> {
 
-	void add(User user); 
-	
-	void update(User user, int id);
+	Iterable<User> getAll(boolean pendings);
 
-	User findOne(int id);
+	User getLogin(String userName, String password);
 
-	void delete(int id); 
+	int getNotActivatedCount();
+
 }

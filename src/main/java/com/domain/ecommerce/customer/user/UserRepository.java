@@ -1,7 +1,8 @@
 package com.domain.ecommerce.customer.user;
 
-import org.springframework.data.repository.CrudRepository;;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> { 
+import com.domain.ecommerce.customer.user.User;
+
+public interface UserRepository extends CrudRepository<User, Long> {
 }
- 
