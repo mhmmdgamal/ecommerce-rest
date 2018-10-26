@@ -1,4 +1,4 @@
-package com.example.ecommerce.user;
+package com.domain.ecommerce.customer.user;
 
 import javax.persistence.*;
 

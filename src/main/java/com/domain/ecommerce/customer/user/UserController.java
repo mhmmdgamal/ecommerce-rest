@@ -1,4 +1,4 @@
-package com.ecommerce.controller.customer;
+package com.domain.ecommerce.customer.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

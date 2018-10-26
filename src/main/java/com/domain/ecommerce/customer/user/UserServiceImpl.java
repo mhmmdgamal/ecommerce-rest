@@ -1,4 +1,4 @@
-package com.example.ecommerce.user;
+package com.domain.ecommerce.customer.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
