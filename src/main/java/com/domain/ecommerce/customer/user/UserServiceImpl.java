@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired//instanse of mysql data base helper
-    private UserRepository userRepository;
+    private UserRepository userRepository; 
 
 	@Override
 	public Iterable<User> findAll() {

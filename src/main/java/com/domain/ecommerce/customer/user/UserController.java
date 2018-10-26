@@ -2,8 +2,6 @@ package com.domain.ecommerce.customer.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.ecommerce.dao.user.User;
-import com.ecommerce.dao.user.UserService;
 
 @RestController
 @RequestMapping("/users")
@@ -19,7 +17,7 @@ public class UserController {
 	}
 
 	// add new user
-	@PostMapping("/add")
+	@PostMapping("/add") 
 	public void add(@RequestBody User user) {
 		userService.add(user);
 	}
