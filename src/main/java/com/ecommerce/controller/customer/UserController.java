@@ -1,7 +1,9 @@
-package com.example.ecommerce.user;
+package com.ecommerce.controller.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.ecommerce.dao.user.User;
+import com.ecommerce.dao.user.UserService;
 
 @RestController
 @RequestMapping("/users")
