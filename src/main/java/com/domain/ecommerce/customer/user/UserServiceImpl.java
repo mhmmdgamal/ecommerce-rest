@@ -3,9 +3,6 @@ package com.domain.ecommerce.customer.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.domain.ecommerce.customer.comment.Comment;
-import com.domain.ecommerce.customer.item.Item;
-
 @Service // dao
 public class UserServiceImpl implements UserService {
 
@@ -34,13 +31,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void update(long id) {
-		User user = getById(id);
-		update(user, id);
-
-	}
-
-	@Override
 	public void delete(long id) {
 		userRepository.deleteById(id);
 	}
@@ -57,15 +47,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void active(long id) {
-		getById(id).setActivated(true);
-		update(id);
-
+		User user = getById(id);
+		user.setActivated(true);
+		update(user);
 	}
 
-	// <improve>
+	/**
+	 * @param user
+	 * @return user with ID after it added to DB
+	 */
 	@Override
-	public int getLastId() {
-		return 0;
+	public User create(User user) {
+		return JdbcTemplateImpl.create(user);
 	}
 
 	@Override
@@ -80,33 +73,30 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getLogin(String userName, String password) {
-		// TODO Auto-generated method stub
+	public User getLogin(String name, String password) {
+		userRepository.findByNameAndPassword(name, password);
 		return null;
 	}
 
 	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getCount() {
+		return userRepository.count();
 	}
 
 	@Override
-	public int getNotActivatedCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getNotActivatedCount() {
+		return userRepository.findByActivated(false);
 	}
 
+//	<improve>
 	@Override
 	public Iterable<User> getLatestCount(int count) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Iterable<User> getAll(String sort) {
-		// Not used
-		return null;
+		return userRepository.findAll();
 	}
 
 }

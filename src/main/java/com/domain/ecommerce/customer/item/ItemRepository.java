@@ -1,8 +1,13 @@
 package com.domain.ecommerce.customer.item;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-import com.domain.ecommerce.customer.user.User;
+public interface ItemRepository extends CrudRepository<Item, Long> {
 
-public interface ItemRepository extends CrudRepository<User, Long> {
+	Page<Item> findByUserId(Long id, Pageable pageable);
+
+	Page<Item> findByCategory(Long id, Pageable pageable);
+
 }

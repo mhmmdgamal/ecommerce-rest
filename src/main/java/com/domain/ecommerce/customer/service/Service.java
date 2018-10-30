@@ -6,8 +6,6 @@ public interface Service<E> {
 
 	void update(E e);
 
-	void update(long id);
-
 	void update(E e, long id);
 
 	void delete(long id);
@@ -18,13 +16,13 @@ public interface Service<E> {
 
 	void active(long id);
 
-	int getLastId();
+	E create(E e);
 
 	Iterable<E> getAll(String sore);
 
 	E getById(long id);
 
-	int getCount();
+	long getCount();
 
 	Iterable<E> getLatestCount(int coune);
 }

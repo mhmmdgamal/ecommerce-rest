@@ -27,19 +27,19 @@ public class UserController {
 
 	// get user by id
 	@GetMapping("/list/{id}")
-	public User one(@PathVariable int id) {
+	public User one(@PathVariable long id) {
 		return userService.getById(id);
 	}
 
 	// update user
 	@PutMapping("/update/{id}")
-	public void update(@RequestBody User user, @PathVariable int id) {
+	public void update(@RequestBody User user, @PathVariable long id) {
 		userService.update(user, id);
 	}
 
 	// delete user by id
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable int id) {
+	public void delete(@PathVariable long id) {
 		userService.delete(id);
 	}
 }

@@ -2,7 +2,6 @@ package com.domain.ecommerce.customer.user;
 
 import javax.persistence.*;
 
-import java.io.FileInputStream;
 import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -24,10 +23,10 @@ public class User {
 	private String email;
 	private String fullName;
 //	private int groupId;
+//	private int regStatus;
 	private boolean activated;
-	private int regStatus;
 	private Date date;
-	private FileInputStream avatarInput;
-	private FileInputStream avatarOutput;
+	private String avatar;
+	
 
 }
