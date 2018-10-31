@@ -22,11 +22,10 @@ public class User {
 	private String password;
 	private String email;
 	private String fullName;
-//	private int groupId;
+	private int groupId;
 //	private int regStatus;
-	private boolean activated;
+	private int activated;
 	private Date date;
 	private String avatar;
 	
-
 }

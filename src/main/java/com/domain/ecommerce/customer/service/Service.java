@@ -4,9 +4,16 @@ public interface Service<E> {
 
 	void add(E e);
 
-	void update(E e);
+	/**
+	 * @param user
+	 * @docRoot add user to DB
+	 * @return user with ID after it added to DB
+	 */
+	long addGetId(E e);
 
 	void update(E e, long id);
+
+	void update(E e);
 
 	void delete(long id);
 
@@ -16,13 +23,11 @@ public interface Service<E> {
 
 	void active(long id);
 
-	E create(E e);
-
 	Iterable<E> getAll(String sore);
 
 	E getById(long id);
 
 	long getCount();
 
-	Iterable<E> getLatestCount(int coune);
+	Iterable<E> getLatest5element();
 }

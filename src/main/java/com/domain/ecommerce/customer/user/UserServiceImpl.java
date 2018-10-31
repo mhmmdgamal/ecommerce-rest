@@ -4,15 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service // dao
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends UserJdbcTemplateImpl implements UserService {
 
-	@Autowired // instanse of mysql data base helper
+	@Autowired //mySql DB helper
 	private UserRepository userRepository;
 
 	@Override
 	public void add(User user) {
 		userRepository.save(user);
 
+	}
+
+	/**
+	 * @param user
+	 * @docRoot add user to DB
+	 * @return ID after added user to DB
+	 */
+	@Override
+	public long addGetId(User user) {
+		return addAndGetId(user);
 	}
 
 	@Override
@@ -27,7 +37,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void update(User user) {
 		update(user, user.getId());
-
 	}
 
 	@Override
@@ -48,17 +57,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void active(long id) {
 		User user = getById(id);
-		user.setActivated(true);
+		user.setActivated(1);
 		update(user);
-	}
-
-	/**
-	 * @param user
-	 * @return user with ID after it added to DB
-	 */
-	@Override
-	public User create(User user) {
-		return JdbcTemplateImpl.create(user);
 	}
 
 	@Override
@@ -85,13 +85,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public long getNotActivatedCount() {
-		return userRepository.findByActivated(false);
+		return userRepository.findByActivated(0);
 	}
 
-//	<improve>
 	@Override
-	public Iterable<User> getLatestCount(int count) {
-		return null;
+	public Iterable<User> getLatest5element() {
+		return userRepository.findTop5ByOrderByIdDesc();
 	}
 
 	@Override

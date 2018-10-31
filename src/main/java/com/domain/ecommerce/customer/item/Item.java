@@ -35,12 +35,13 @@ public class Item {
     private String name;
     private String description;
     private String price;
-    private Date addDate;
+    private Date date;
     private String countryMade;
-    private String image;
-    private String status;
+    private String imagePath;
+//    private String status;
     private byte rating;
-    private byte approve;
+//    private byte approve;
+    private int activated;
     private String tags;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
