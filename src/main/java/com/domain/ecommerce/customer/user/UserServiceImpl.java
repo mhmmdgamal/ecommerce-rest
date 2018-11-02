@@ -75,6 +75,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public Iterable<User> getAll(String sort) {
+		if (sort.equals("DES"))
+			return userRepository.findAllByOrderByIdDesc();
+		return userRepository.findAll();
+	}
+
+	@Override
 	public User getById(long id) {
 		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Could not find user: ", id));
 	}
@@ -91,18 +98,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getLogin(String name, String password) {
-		userRepository.findByNameAndPassword(name, password);
-		return null;
+		return userRepository.findByNameAndPassword(name, password);
 	}
 
 	@Override
 	public long getNotActivatedCount() {
 		return userRepository.countByActivated(0);
-	}
-
-	@Override
-	public Iterable<User> getAll(String sort) {
-		return userRepository.findAll();
 	}
 
 }

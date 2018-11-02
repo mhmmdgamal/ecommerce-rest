@@ -5,7 +5,6 @@ import com.domain.ecommerce.customer.model.BeanModel;
 import com.domain.ecommerce.customer.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,23 +33,28 @@ public class Item extends BeanModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	@NotNull
     @Size(max = 100)
 	private String name;
+	
 	private String description;
 	private String price;
 	private String countryMade;
 	private String image;
+	
 	@NotNull
     @Size(max = 100)
 	private String status;// New-like New-old
+	
 	private int rating;// 5 Stars
 	private String tag;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
+//	@OnUpdate(action = OnDeleteAction.CASCADE)
+	@JsonIgnore// used to prevent the user field from being serialized into JSON.
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)

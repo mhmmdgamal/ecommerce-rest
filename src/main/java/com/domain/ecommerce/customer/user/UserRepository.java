@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Iterable<User> findByActivated(int activated);
 
 	Iterable<User> findTop5ByOrderByIdDesc();
+
+	Iterable<User> findAllByOrderByIdDesc();
 }
