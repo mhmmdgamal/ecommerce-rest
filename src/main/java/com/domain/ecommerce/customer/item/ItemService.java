@@ -1,20 +1,21 @@
 package com.domain.ecommerce.customer.item;
 
-import com.domain.ecommerce.customer.comment.Comment;
 import com.domain.ecommerce.customer.service.Service;
 
 public interface ItemService extends Service<Item> {
 
-	Iterable<Comment> getComments(long id, String sort);
+	Iterable<Item> getActivatedById(long id);
 
-	Iterable<Item> getApprovedById(long id);
+	Iterable<Item> getAllActivated(String sort);
 
-	Iterable<Item> getAllApproved(String sort);
-
+	public long getNotActivatedCount();
+	
 	Iterable<Item> getTag(String tag, String sort);
 
-	boolean approve(long id);
-
 	Iterable<Item> getAll(long userid, String sort);
+
+	Iterable<Item> getByCategoryId(Long id);
+
+	Iterable<Item> getByUserId(Long id);
 
 }

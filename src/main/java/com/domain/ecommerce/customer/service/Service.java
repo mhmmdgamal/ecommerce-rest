@@ -23,7 +23,9 @@ public interface Service<E> {
 
 	void active(long id);
 
-	Iterable<E> getAll(String sore);
+	Iterable<E> getAll(int activated);
+
+	Iterable<E> getAll(String sort);
 
 	E getById(long id);
 

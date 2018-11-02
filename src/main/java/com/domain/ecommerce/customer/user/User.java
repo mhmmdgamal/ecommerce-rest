@@ -1,8 +1,11 @@
 package com.domain.ecommerce.customer.user;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import java.sql.Date;
+import com.domain.ecommerce.customer.model.BeanModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,19 +16,29 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User extends BeanModel {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@NotNull
+    @Size(max = 100)
+	@Column(unique = true)
 	private String name;
-	private String password;
-	private String email;
-	private String fullName;
-	private int groupId;
-//	private int regStatus;
-	private int activated;
-	private Date date;
-	private String avatar;
 	
+	@NotNull
+    @Size(max = 100)
+	private String password;
+	
+	@NotNull
+    @Size(max = 100)
+    @Column(unique = true)
+	private String email;
+	
+	private String fullName;
+	@Column(name="group_id", columnDefinition="Decimal(10,2) default '1'")
+	private int groupId;
+	private String avatar;
+
 }

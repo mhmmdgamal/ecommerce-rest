@@ -3,16 +3,20 @@ package com.domain.ecommerce.customer.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service // dao
-public class UserServiceImpl extends UserJdbcTemplateImpl implements UserService {
+@Service // uses constructor injection to obtain a required userRepository bean
+public class UserServiceImpl implements UserService {
 
-	@Autowired //mySql DB helper
+	// mySql DB helper
 	private UserRepository userRepository;
+
+	@Autowired // constructor injection
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public void add(User user) {
 		userRepository.save(user);
-
 	}
 
 	/**
@@ -22,15 +26,19 @@ public class UserServiceImpl extends UserJdbcTemplateImpl implements UserService
 	 */
 	@Override
 	public long addGetId(User user) {
-		return addAndGetId(user);
+		User returnedUser = userRepository.save(user);
+		return returnedUser.getId();
 	}
 
 	@Override
 	public void update(User user, long id) {
+
 		userRepository.findById(id).map(userFounded -> {
 			userFounded.setName(user.getName());
 			userFounded.setEmail(user.getEmail());
+//			userFounded=user;
 			return userRepository.save(userFounded);
+
 		}).orElseThrow(() -> new UserNotFoundException("Could not find user: ", id));
 	}
 
@@ -62,14 +70,23 @@ public class UserServiceImpl extends UserJdbcTemplateImpl implements UserService
 	}
 
 	@Override
-	public Iterable<User> getAll(boolean pendings) {
-		return userRepository.findAll();
+	public Iterable<User> getAll(int activated) {
+		return userRepository.findByActivated(activated);
 	}
 
 	@Override
 	public User getById(long id) {
 		return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Could not find user: ", id));
+	}
 
+	@Override
+	public long getCount() {
+		return userRepository.count();
+	}
+
+	@Override
+	public Iterable<User> getLatest5element() {
+		return userRepository.findTop5ByOrderByIdDesc();
 	}
 
 	@Override
@@ -79,18 +96,8 @@ public class UserServiceImpl extends UserJdbcTemplateImpl implements UserService
 	}
 
 	@Override
-	public long getCount() {
-		return userRepository.count();
-	}
-
-	@Override
 	public long getNotActivatedCount() {
-		return userRepository.findByActivated(0);
-	}
-
-	@Override
-	public Iterable<User> getLatest5element() {
-		return userRepository.findTop5ByOrderByIdDesc();
+		return userRepository.countByActivated(0);
 	}
 
 	@Override

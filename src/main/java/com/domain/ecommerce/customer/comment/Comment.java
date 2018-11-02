@@ -1,7 +1,5 @@
 package com.domain.ecommerce.customer.comment;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,12 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.domain.ecommerce.customer.item.Item;
-import com.domain.ecommerce.customer.model.AuditModel;
+import com.domain.ecommerce.customer.model.BeanModel;
 import com.domain.ecommerce.customer.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,12 +28,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor 
 @NoArgsConstructor
-public class Comment extends AuditModel{
+public class Comment extends BeanModel{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+	@NotNull
+    @Size(max = 300)
     private String comment;
-    private Date date;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)

@@ -1,14 +1,27 @@
 package com.domain.ecommerce.customer.item;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-public interface ItemRepository extends CrudRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
 
-	Item findByUserId(Long id);
+	Iterable<Item> findTop5ByOrderByIdDesc();
 
-	Item findByCategoryId(Long id);
+	Iterable<Item> findByActivated(int activated);
+
+	Iterable<Item> findByActivatedOrderByIdDesc(int activated);
+
+	Iterable<Item> findByTag(String tag);
+
+	Iterable<Item> findByTagOrderByIdDesc(String tag);
+
+	Iterable<Item> findByIdAndActivated(long id, int activated);
+
+	long countByActivated(int activated);
+	
+	Iterable<Item> findByUserId(Long id);
+
+	Iterable<Item> findByCategoryId(Long id);
 
 //	Page<Item> findByUserId(Long id, Pageable pageable);
 //

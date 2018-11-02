@@ -1,17 +1,25 @@
 package com.domain.ecommerce.customer.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.domain.ecommerce.customer.comment.Comment;
+import com.domain.ecommerce.customer.user.UserNotFoundException;
 
+@Service
 public class ItemServiceImpl implements ItemService {
 
-	@Autowired // mySql DB helper
-	private ItemRepository userRepository;
+	// mySql DB helper
+	private ItemRepository itemRepository;
+
+	@Autowired
+	public ItemServiceImpl(ItemRepository itemRepository) {
+		this.itemRepository = itemRepository;
+	}
 
 	@Override
 	public void add(Item item) {
-		userRepository.save(item);
+		itemRepository.save(item);
 	}
 
 	/**
@@ -21,15 +29,16 @@ public class ItemServiceImpl implements ItemService {
 	 */
 	@Override
 	public long addGetId(Item item) {
-		// TODO Auto-generated method stub
-		return 0;
+		Item returnedItem = itemRepository.save(item);
+		return returnedItem.getId();
 	}
 
 	@Override
 	public void update(Item item, long id) {
-		userRepository.findById(id).map(userFounded -> {
-			userFounded.setName(item.getName());
-			return userRepository.save(userFounded);
+		itemRepository.findById(id).map(itemFounded -> {
+			item.setId(id);
+			itemFounded = item;
+			return itemRepository.save(itemFounded);
 		}).orElseThrow(() -> new ItemNotFoundException("Could not find user: ", id));
 
 	}
@@ -41,17 +50,17 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public void delete(long id) {
-		userRepository.deleteById(id);
+		itemRepository.deleteById(id);
 	}
 
 	@Override
 	public void delete(Item item) {
-		userRepository.deleteById(item.getId());
+		itemRepository.deleteById(item.getId());
 	}
 
 	@Override
 	public void deleteAll() {
-		userRepository.deleteAll();
+		itemRepository.deleteAll();
 	}
 
 	@Override
@@ -63,62 +72,72 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Iterable<Item> getAll(String sore) {
-		// TODO Auto-generated method stub
-		return null;
+		return itemRepository.findAll();
 	}
 
 	@Override
 	public Item getById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Could not find item : ", id));
 	}
 
 	@Override
 	public long getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return itemRepository.count();
 	}
 
 	@Override
 	public Iterable<Item> getLatest5element() {
-		// TODO Auto-generated method stub
-		return null;
+		return itemRepository.findTop5ByOrderByIdDesc();
 	}
 
 	@Override
-	public Iterable<Comment> getComments(long id, String sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<Item> getActivatedById(long id) {
+		return itemRepository.findByIdAndActivated(id, 1);
 	}
 
 	@Override
-	public Iterable<Item> getApprovedById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<Item> getAll(int activated) {
+		return itemRepository.findByActivated(activated);
 	}
 
-	@Override
-	public Iterable<Item> getAllApproved(String sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<Item> getAll(int activated, String sort) {
+		if (sort.equals("DES"))
+			return itemRepository.findByActivatedOrderByIdDesc(1);
+		return itemRepository.findByActivated(1);
 	}
 
 	@Override
 	public Iterable<Item> getTag(String tag, String sort) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean approve(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		if (sort.equals("DES"))
+			return itemRepository.findByTagOrderByIdDesc(tag);
+		return itemRepository.findByTag(tag);
 	}
 
 	@Override
 	public Iterable<Item> getAll(long userid, String sort) {
-		// TODO Auto-generated method stub
-		return null;
+		return itemRepository.findAll();
+	}
+
+	@Override
+	public Iterable<Item> getAllActivated(String sort) {
+		if (sort.equals("DES"))
+			return itemRepository.findByActivatedOrderByIdDesc(1);
+		return itemRepository.findByActivated(1);
+	}
+
+	@Override
+	public long getNotActivatedCount() {
+		return itemRepository.countByActivated(0);
+	}
+
+	@Override
+	public Iterable<Item> getByCategoryId(Long id) {
+		return itemRepository.findByCategoryId(id);
+	}
+
+	@Override
+	public Iterable<Item> getByUserId(Long id) {
+		return itemRepository.findByUserId(id);
 	}
 
 }

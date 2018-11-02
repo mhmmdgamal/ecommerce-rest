@@ -10,19 +10,29 @@ import com.domain.ecommerce.customer.user.UserService;
 @RequestMapping("/users")
 public class UserController {
 
-	@Autowired
 	private UserService userService;
-	
+
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
 	// get all users
 	@GetMapping("/list")
 	public Iterable<User> all() {
-		return userService.getAll(true);
+		return userService.getAll(1);
 	}
 
 	// add new user
 	@PostMapping("/add")
 	public void add(@RequestBody User user) {
 		userService.add(user);
+	}
+
+	// add new user
+	@PostMapping("/add/getid")
+	public long addAndGetId(@RequestBody User user) {
+		return userService.addGetId(user);
 	}
 
 	// get user by id

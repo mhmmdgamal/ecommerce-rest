@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+//Auditing helps us in maintaining history records(time and date) :
 @EnableJpaAuditing
 public class RunEcommerceApplication {
 
