@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends BeanModel {
+public class User {
 
 	private static final long serialVersionUID = 1L;
 	@Id

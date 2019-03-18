@@ -7,17 +7,17 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
 	Iterable<Item> findTop5ByOrderByIdDesc();
 
-	Iterable<Item> findByActivated(int activated);
+//	Iterable<Item> findByActivated(int activated);
 
-	Iterable<Item> findByActivatedOrderByIdDesc(int activated);
+//	Iterable<Item> findByActivatedOrderByIdDesc(int activated);
 
 	Iterable<Item> findByTag(String tag);
 
 	Iterable<Item> findByTagOrderByIdDesc(String tag);
 
-	Iterable<Item> findByIdAndActivated(long id, int activated);
+//	Iterable<Item> findByIdAndActivated(long id, int activated);
 
-	long countByActivated(int activated);
+//	long countByActivated(int activated);
 	
 	Iterable<Item> findByUserId(Long id);
 

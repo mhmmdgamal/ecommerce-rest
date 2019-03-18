@@ -21,9 +21,9 @@ public interface Service<E> {
 
 	void deleteAll();
 
-	void active(long id);
+//	void active(long id);
 
-	Iterable<E> getAll(int activated);
+//	Iterable<E> getAll(int activated);
 
 	Iterable<E> getAll(String sort);
 

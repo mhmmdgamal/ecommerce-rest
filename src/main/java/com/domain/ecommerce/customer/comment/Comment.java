@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor 
 @NoArgsConstructor
-public class Comment extends BeanModel{
+public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -5,8 +5,8 @@ import com.domain.ecommerce.customer.user.User;
 
 public interface UserService extends Service<User> {
 
-	User getLogin(String name, String password);
+//	User getLogin(String name, String password);
 
-	long getNotActivatedCount();
+//	long getNotActivatedCount();
 
 }

@@ -4,11 +4,11 @@ import com.domain.ecommerce.customer.service.Service;
 
 public interface ItemService extends Service<Item> {
 
-	Iterable<Item> getActivatedById(long id);
+//	Iterable<Item> getActivatedById(long id);
 
-	Iterable<Item> getAllActivated(String sort);
+//	Iterable<Item> getAllActivated(String sort);
 
-	public long getNotActivatedCount();
+//	public long getNotActivatedCount();
 	
 	Iterable<Item> getTag(String tag, String sort);
 

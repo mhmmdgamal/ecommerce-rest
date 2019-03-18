@@ -62,17 +62,17 @@ public class UserServiceImpl implements UserService {
 		userRepository.deleteAll();
 	}
 
-	@Override
-	public void active(long id) {
-		User user = getById(id);
-		user.setActivated(1);
-		update(user);
-	}
+//	@Override
+//	public void active(long id) {
+//		User user = getById(id);
+////		user.setActivated(1);
+//		update(user);
+//	}
 
-	@Override
-	public Iterable<User> getAll(int activated) {
-		return userRepository.findByActivated(activated);
-	}
+//	@Override
+//	public Iterable<User> getAll(int activated) {
+//		return userRepository.findByActivated(activated);
+//	}
 
 	@Override
 	public Iterable<User> getAll(String sort) {
@@ -96,14 +96,14 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findTop5ByOrderByIdDesc();
 	}
 
-	@Override
-	public User getLogin(String name, String password) {
-		return userRepository.findByNameAndPassword(name, password);
-	}
-
-	@Override
-	public long getNotActivatedCount() {
-		return userRepository.countByActivated(0);
-	}
+//	@Override
+//	public User getLogin(String name, String password) {
+//		return userRepository.findByNameAndPassword(name, password);
+//	}
+//
+//	@Override
+//	public long getNotActivatedCount() {
+//		return userRepository.countByActivated(0);
+//	}
 
 }

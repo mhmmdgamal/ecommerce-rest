@@ -63,15 +63,15 @@ public class ItemServiceImpl implements ItemService {
 		itemRepository.deleteAll();
 	}
 
-	@Override
-	public void active(long id) {
-		Item item = getById(id);
-		item.setActivated(1);
-		update(item);
-	}
+//	@Override
+//	public void active(long id) {
+//		Item item = getById(id);
+////		item.setActivated(1);
+//		update(item);
+//	}
 
 	@Override
-	public Iterable<Item> getAll(String sore) {
+	public Iterable<Item> getAll(String sort) {
 		return itemRepository.findAll();
 	}
 
@@ -90,21 +90,21 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findTop5ByOrderByIdDesc();
 	}
 
-	@Override
-	public Iterable<Item> getActivatedById(long id) {
-		return itemRepository.findByIdAndActivated(id, 1);
-	}
+//	@Override
+//	public Iterable<Item> getActivatedById(long id) {
+//		return itemRepository.findByIdAndActivated(id, 1);
+//	}
 
-	@Override
-	public Iterable<Item> getAll(int activated) {
-		return itemRepository.findByActivated(activated);
-	}
+//	@Override
+//	public Iterable<Item> getAll(int activated) {
+//		return itemRepository.findByActivated(activated);
+//	}
 
-	public Iterable<Item> getAll(int activated, String sort) {
-		if (sort.equals("DES"))
-			return itemRepository.findByActivatedOrderByIdDesc(1);
-		return itemRepository.findByActivated(1);
-	}
+//	public Iterable<Item> getAll(int activated, String sort) {
+//		if (sort.equals("DES"))
+//			return itemRepository.findByActivatedOrderByIdDesc(1);
+//		return itemRepository.findByActivated(1);
+//	}
 
 	@Override
 	public Iterable<Item> getTag(String tag, String sort) {
@@ -118,17 +118,17 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.findAll();
 	}
 
-	@Override
-	public Iterable<Item> getAllActivated(String sort) {
-		if (sort.equals("DES"))
-			return itemRepository.findByActivatedOrderByIdDesc(1);
-		return itemRepository.findByActivated(1);
-	}
+//	@Override
+//	public Iterable<Item> getAllActivated(String sort) {
+//		if (sort.equals("DES"))
+//			return itemRepository.findByActivatedOrderByIdDesc(1);
+//		return itemRepository.findByActivated(1);
+//	}
 
-	@Override
-	public long getNotActivatedCount() {
-		return itemRepository.countByActivated(0);
-	}
+//	@Override
+//	public long getNotActivatedCount() {
+//		return itemRepository.countByActivated(0);
+//	}
 
 	@Override
 	public Iterable<Item> getByCategoryId(Long id) {

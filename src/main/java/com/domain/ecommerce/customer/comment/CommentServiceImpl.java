@@ -56,17 +56,17 @@ public class CommentServiceImpl implements CommentService {
 		commentRepository.deleteAll();
 	}
 
-	@Override
-	public void active(long id) {
-		Comment comment = getById(id);
-		comment.setActivated(1);
-		update(comment);
-	}
+//	@Override
+//	public void active(long id) {
+//		Comment comment = getById(id);
+////		comment.setActivated(1);
+//		update(comment);
+//	}
 
-	@Override
-	public Iterable<Comment> getAll(int activated) {
-		return commentRepository.findByActivated(activated);
-	}
+//	@Override
+//	public Iterable<Comment> getAll(int activated) {
+//		return commentRepository.findByActivated(activated);
+//	}
 
 	@Override
 	public Iterable<Comment> getAll(String sort) {

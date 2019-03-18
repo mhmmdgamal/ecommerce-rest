@@ -20,7 +20,7 @@ public class UserController {
 	// get all users
 	@GetMapping("/list")
 	public Iterable<User> all() {
-		return userService.getAll(1);
+		return userService.getAll("DES");
 	}
 
 	// add new user

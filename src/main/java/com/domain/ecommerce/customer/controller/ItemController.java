@@ -27,7 +27,7 @@ public class ItemController {
 	// get all items
 	@GetMapping("/list")
 	public Iterable<Item> all() {
-		return itemService.getAll(1);
+		return itemService.getAll("DES");
 	}
 
 	// add new item

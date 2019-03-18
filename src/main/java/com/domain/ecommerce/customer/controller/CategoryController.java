@@ -27,7 +27,7 @@ public class CategoryController {
 	// get all categories
 	@GetMapping("/list")
 	public Iterable<Category> all() {
-		return categoryService.getAll(1);
+		return categoryService.getAll("DES");
 	}
 
 	// add new category

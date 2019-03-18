@@ -59,17 +59,17 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryRepository.deleteAll();
 	}
 
-	@Override
-	public void active(long id) {
-		Category category = getById(id);
-		category.setActivated(1);
-		update(category);
-	}
+//	@Override
+//	public void active(long id) {
+//		Category category = getById(id);
+////		category.setActivated(1);
+//		update(category);
+//	}
 
-	@Override
-	public Iterable<Category> getAll(int activated) {
-		return categoryRepository.findByActivated(activated);
-	}
+//	@Override
+//	public Iterable<Category> getAll(int activated) {
+//		return categoryRepository.findByActivated(activated);
+//	}
 
 	@Override
 	public Iterable<Category> getAll(String sort) {

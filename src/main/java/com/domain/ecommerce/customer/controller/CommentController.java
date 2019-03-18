@@ -27,7 +27,7 @@ public class CommentController {
 	// get all comments
 	@GetMapping("/list")
 	public Iterable<Comment> all() {
-		return commentService.getAll(1);
+		return commentService.getAll("DES");
 	}
 
 	// add new Comment
